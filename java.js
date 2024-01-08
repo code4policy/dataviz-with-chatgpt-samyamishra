@@ -27,7 +27,7 @@ d3.csv('/311-basic/311_boston_data.csv').then(function(data) {
     const y = d3.scaleBand()
         .range([0, height])
         .domain(topReasons.map(d => d.reason))
-        .padding(0.1);
+        .padding(0.3);
 
     const x = d3.scaleLinear()
         .range([0, width])
@@ -55,4 +55,12 @@ d3.csv('/311-basic/311_boston_data.csv').then(function(data) {
         .attr('x', 0)
         .attr('width', d => x(d.Count))
         .attr('fill', 'steelblue');
+
+    // Append headline to the SVG
+    svg.append('text')
+        .attr('x', width / 2)
+        .attr('y', -margin.top / 4)
+        .attr('text-anchor', 'middle')
+        .style('font-size', '20px')
+        .text('Top 10 Reasons for 311 Calls in Boston'); // Replace with your desired headline
 });
